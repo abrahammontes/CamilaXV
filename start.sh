@@ -3,7 +3,7 @@
 cd "$(dirname "$0")/server"
 
 if pgrep -f "node server.js" > /dev/null; then
-    echo "El servidor ya está corriendo en http://localhost:3001"
+    echo "El servidor ya está corriendo en https://xvdecamila.mipagina.pro"
     exit 0
 fi
 
@@ -12,9 +12,9 @@ node server.js &
 
 sleep 2
 
-if curl -s http://localhost:3001/api/rsvps > /dev/null 2>&1; then
-    echo "✓ Servidor corriendo en http://localhost:3001"
-    echo "✓ Dashboard: http://localhost:3001/dashboard"
+if curl -s https://xvdecamila.mipagina.pro/api/rsvps > /dev/null 2>&1; then
+    echo "✓ Servidor corriendo en https://xvdecamila.mipagina.pro"
+    echo "✓ Dashboard: https://xvdecamila.mipagina.pro/dashboard"
 else
     echo "✗ Error al iniciar el servidor"
     exit 1
