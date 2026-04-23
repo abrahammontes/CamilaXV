@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camila Violeta - Mis 15 Años</title>
+    <meta name="description" content="Invitación a la fiesta de XV años de Camila Violeta. 27 de Mayo de 2026">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
+</head>
+<body>
+    <div id="cover" class="section">
+        <div class="cover-content fade-in">
+            <p class="cover-subtitle red-text">Mis 15 Años</p>
+            <h1 class="cover-title shimmer">Camila Violeta</h1>
+            <div class="ornament"></div>
+            <p class="cover-date">27 de Mayo de 2026</p>
+            <div class="cover-honors">
+                <p>Con la bendición de Dios y de mis padres</p>
+                <p class="red-text">Jesús Torres Loreto & Alma Patricia Diaz</p>
+                <br>
+                <p>Mis Padrinos de Honor</p>
+                <p class="red-text">Fernando Sotelo & Susana Margarita Diaz</p>
+            </div>
+            <button class="btn btn-red" onclick="openModal('welcome')">Ver Invitación</button>
+        </div>
+    </div>
+
+    <div id="countdown" class="section">
+        <h2 class="section-title fade-in">Faltan</h2>
+        <div class="countdown-container fade-in">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Días</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Horas</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutos</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Segundos</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="message" class="section">
+        <div class="fade-in">
+            <p class="red-text" style="letter-spacing: 4px; text-transform: uppercase; font-size: 0.9rem;">Mis XV años</p>
+            <h2 class="section-title">Camila Violeta</h2>
+            <div class="decorative-line"></div>
+            <p class="message-text">
+                Te espero para compartir la alegría de esa noche que será para mí mágica, inolvidable y única.
+            </p>
+            <div class="ornament"></div>
+            <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">
+                Padres de la Quinceañera<br>
+                <span class="red-text">Jesús Torres Loreto & Alma Patricia Diaz</span>
+            </p>
+        </div>
+    </div>
+
+    <div id="celebration" class="section" style="background: var(--dark);">
+        <div class="fade-in">
+            <h2 class="section-title">Celebración</h2>
+            <div class="celebration-card red-border">
+                <p class="celebration-label">Día</p>
+                <p class="celebration-value large">Miércoles 27 de Mayo de 2026</p>
+                <div class="decorative-line"></div>
+                <p class="celebration-label">Lugar</p>
+                <p class="celebration-value large red-text">Quinta el Edén</p>
+                <div class="decorative-line"></div>
+                <p class="celebration-label">Dirección</p>
+                <p class="celebration-value">Calle Morelos 670<br>Col. González Ortega<br>45190 Zapopan, Jalisco</p>
+                <div style="margin-top: 2rem;">
+                    <a href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYz8POv4SUAxUAAAAAHQAAAAAQDg..i&rlz=1C1GCEA_enMX1199MX1199&sca_esv=ab29eab4cbc9082d&udm=1&pvq=Cg0vZy8xMWJjY2dyaDUyIhYKEFNhbG9uIERlIGV2ZW50b3MQAhgD&lqi=ChBTYWxvbiBEZSBldmVudG9zSKL5rretqoCACFoeEAAQARACGAAYARgCIhBzYWxvbiBkZSBldmVudG9zkgEWZnVuY3Rpb25fcm9vbV9mYWNpbGl0eZoBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VOUWFWOVhkVlZCRUFF-gEECAAQPA&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=mx&sa=X&ftid=0x8428b024f76726e3:0xe632718580cef1a6" 
+                       target="_blank" 
+                       class="btn btn-red">
+                        ¿Cómo llegar?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gallery" class="section">
+        <div class="fade-in">
+            <h2 class="section-title">Galería</h2>
+            <p style="opacity: 0.7; margin-bottom: 1rem;">Un recorrido de estos 15 años</p>
+        </div>
+        <div class="gallery-grid fade-in">
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0004.jpg" alt="Foto 1" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0005.jpg" alt="Foto 2" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0006.jpg" alt="Foto 3" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0007.jpg" alt="Foto 4" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0008.jpg" alt="Foto 5" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0009.jpg" alt="Foto 6" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0010.jpg" alt="Foto 7" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0011.jpg" alt="Foto 8" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0012.jpg" alt="Foto 9" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0013.jpg" alt="Foto 10" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0014.jpg" alt="Foto 11" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0015.jpg" alt="Foto 12" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0016.jpg" alt="Foto 13" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(this)">
+                <img src="images/IMG-20260423-WA0017.jpg" alt="Foto 14" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <div id="party" class="section">
+        <div class="fade-in">
+            <h2 class="section-title">Fiesta</h2>
+            <p style="opacity: 0.7;">Hagamos juntos una fiesta épica</p>
+        </div>
+        <div class="party-grid fade-in">
+            <div class="party-card red-border">
+                <svg class="party-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 18V5l12-2v13"/>
+                    <circle cx="6" cy="18" r="3"/>
+                    <circle cx="18" cy="16" r="3"/>
+                </svg>
+                <h3 class="party-card-title">Playlist</h3>
+                <p class="party-card-text">¿Cuál es la canción que no debe faltar en la fiesta?</p>
+                <button class="btn btn-red" style="margin-top: 1.5rem;" onclick="openModal('song')">Sugerir Canción</button>
+            </div>
+            <div class="party-card red-border">
+                <svg class="party-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+                <h3 class="party-card-title">Dress Code</h3>
+                <p class="party-card-text">Una orientación para tu vestuario</p>
+                <button class="btn btn-red" style="margin-top: 1.5rem;" onclick="openModal('dresscode')">Ver más</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="rsvp" class="section" style="background: var(--dark);">
+        <div class="fade-in">
+            <h2 class="section-title">Confirmar Asistencia</h2>
+            <p style="opacity: 0.7; margin-bottom: 2rem;">¿Vas a asistir? ¡Cuéntanos!</p>
+            <form class="rsvp-form" onsubmit="handleRSVP(event)">
+                <div class="form-group">
+                    <input type="text" id="rsvp-name" placeholder="Tu nombre" required>
+                </div>
+                <div class="input-row">
+                    <div class="form-group">
+                        <select id="rsvp-attending" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--white); font-family: inherit; font-size: 1rem;">
+                            <option value="yes" style="background: var(--dark);">Sí, confirmo</option>
+                            <option value="no" style="background: var(--dark);">No puedo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="rsvp-guests" placeholder="Acompañantes" min="0" max="5" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea id="rsvp-message" placeholder="Mensaje (opcional)"></textarea>
+                </div>
+                <button type="submit" class="btn btn-red" style="width: 100%;">Enviar</button>
+                <p class="form-success" id="rsvp-success">¡Gracias por confirmar!</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer" class="section">
+        <div class="fade-in">
+            <h2 class="footer-hashtag red-text">#15Camila</h2>
+            <p style="opacity: 0.7;">Una gran fiesta junto a vos</p>
+            <div class="ornament"></div>
+            <p class="footer-credit">
+                <span>Camila Violeta</span> - Mis 15 Años
+            </p>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content red-border">
+            <span class="modal-close" onclick="closeModal('welcome')">&times;</span>
+            <p class="red-text" style="letter-spacing: 4px; text-transform: uppercase; font-size: 0.8rem;">Bienvenidos</p>
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin: 1rem 0;">Camila Violeta</h2>
+            <p style="opacity: 0.8; line-height: 1.8; margin-bottom: 2rem;">
+                Te invito a celebrar conmigo esta noche mágica e inolvidable.
+            </p>
+            <div class="decorative-line"></div>
+            <p style="font-size: 1.2rem; color: var(--red);">27 de Mayo de 2026</p>
+            <div style="margin-top: 2rem;">
+                <button class="btn btn-red" onclick="closeModal('welcome'); scrollToSection('countdown');">
+                    Ver Invitación
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Song Modal -->
+    <div id="song-modal" class="modal">
+        <div class="modal-content red-border">
+            <span class="modal-close" onclick="closeModal('song')">&times;</span>
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 1.5rem;">Sugerir Canción</h2>
+            <form onsubmit="handleSongSubmit(event)">
+                <div class="form-group">
+                    <input type="text" id="song-name" placeholder="Nombre de la canción" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="song-artist" placeholder="Artista" required>
+                </div>
+                <button type="submit" class="btn btn-red" style="width: 100%;">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dresscode Modal -->
+    <div id="dresscode-modal" class="modal">
+        <div class="modal-content red-border">
+            <span class="modal-close" onclick="closeModal('dresscode')">&times;</span>
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 1.5rem;">Dress Code</h2>
+            <p style="line-height: 1.8; opacity: 0.9; margin-bottom: 1.5rem;">
+                <span class="red-text">Elegante / Formal</span>
+            </p>
+            <p style="line-height: 1.8; opacity: 0.7;">
+                Vestido largo para ellas<br>
+                Traje formal para ellos<br><br>
+                <em>Colors: Negro y Dorado bienvenidos</em>
+            </p>
+            <div class="decorative-line"></div>
+            <p style="font-size: 0.9rem; opacity: 0.6;">
+                ¡Vístete elegante y disfruta la noche!
+            </p>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="modal" onclick="closeModal('gallery')">
+        <span class="modal-close" onclick="closeModal('gallery')">&times;</span>
+        <img id="gallery-modal-img" src="" alt="Foto" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
