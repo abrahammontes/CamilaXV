@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   web:
     build:
@@ -8,4 +10,16 @@ services:
       - "80:80"
     volumes:
       - ./public:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./server
+      dockerfile: ../docker/Dockerfile.api
+    container_name: camilaxv_api
+    ports:
+      - "3001:3000"
+    working_dir: /app
+    volumes:
+      - ./server:/app
     restart: unless-stopped

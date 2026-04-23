@@ -1,4 +1,5 @@
 const EVENT_DATE = new Date('2026-05-27T18:00:00');
+const API_URL = window.location.protocol + '//' + window.location.hostname + ':3001';
 
 function updateCountdown() {
     const now = new Date();
@@ -52,36 +53,56 @@ document.querySelectorAll('.modal').forEach(modal => {
     });
 });
 
-function handleRSVP(e) {
+async function handleRSVP(e) {
     e.preventDefault();
     const name = document.getElementById('rsvp-name').value;
     const attending = document.getElementById('rsvp-attending').value;
     const guests = document.getElementById('rsvp-guests').value;
     const message = document.getElementById('rsvp-message').value;
 
-    console.log('RSVP:', { name, attending, guests, message });
+    try {
+        const res = await fetch(`${API_URL}/api/rsvp`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, attending, guests, message })
+        });
 
-    document.getElementById('rsvp-success').classList.add('show');
-    document.getElementById('rsvp-name').value = '';
-    document.getElementById('rsvp-message').value = '';
-    document.getElementById('rsvp-guests').value = '0';
+        if (res.ok) {
+            document.getElementById('rsvp-success').classList.add('show');
+            document.getElementById('rsvp-name').value = '';
+            document.getElementById('rsvp-message').value = '';
+            document.getElementById('rsvp-guests').value = '0';
 
-    setTimeout(() => {
-        document.getElementById('rsvp-success').classList.remove('show');
-    }, 3000);
+            setTimeout(() => {
+                document.getElementById('rsvp-success').classList.remove('show');
+            }, 3000);
+        }
+    } catch (err) {
+        console.error('Error submitting RSVP:', err);
+    }
 }
 
-function handleSongSubmit(e) {
+async function handleSongSubmit(e) {
     e.preventDefault();
     const songName = document.getElementById('song-name').value;
     const artist = document.getElementById('song-artist').value;
 
-    console.log('Song Suggestion:', { songName, artist });
+    try {
+        const res = await fetch(`${API_URL}/api/song`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ songName, artist })
+        });
 
-    alert(`¡Gracias por sugerir "${songName}" de ${artist}!`);
-    document.getElementById('song-name').value = '';
-    document.getElementById('song-artist').value = '';
-    closeModal('song');
+        if (res.ok) {
+            alert(`¡Gracias por sugerir "${songName}" de ${artist}!`);
+            document.getElementById('song-name').value = '';
+            document.getElementById('song-artist').value = '';
+            closeModal('song');
+        }
+    } catch (err) {
+        console.error('Error submitting song:', err);
+    }
 }
 
 function scrollToSection(id) {
