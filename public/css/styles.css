@@ -325,7 +325,8 @@ h1, h2, h3 {
     opacity: 0.6;
 }
 
-#celebration .section-title {
+#celebration .section-title,
+#ceremony .section-title {
     font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 3rem;
 }
