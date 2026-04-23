@@ -10,7 +10,4 @@ COPY . .
 
 EXPOSE 3001
 
-HEALTHCHECK --interval=30s --timeout=10s --retries=3 --start-period=5s \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:3001/api/rsvps || exit 1
-
-CMD ["sh", "-c", "node server.js"]
+CMD ["node", "server.js"]
