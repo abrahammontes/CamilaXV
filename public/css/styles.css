@@ -42,6 +42,7 @@ h1, h2, h3 {
     justify-content: center;
     padding: 4rem 2rem;
     position: relative;
+    z-index: 2;
 }
 
 .section::before {
@@ -53,6 +54,44 @@ h1, h2, h3 {
     bottom: 0;
     background: radial-gradient(ellipse at center, rgba(220, 20, 60, 0.05) 0%, transparent 70%);
     pointer-events: none;
+    z-index: 1;
+}
+
+.bg-slider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    filter: blur(3px) brightness(0.3);
+}
+
+.bg-slide.active {
+    opacity: 1;
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
 }
 
 .red-border {

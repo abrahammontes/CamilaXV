@@ -113,3 +113,53 @@ document.addEventListener('keydown', (e) => {
         document.body.style.overflow = '';
     }
 });
+
+const images = [
+    'images/IMG-20260423-WA0004.jpg',
+    'images/IMG-20260423-WA0005.jpg',
+    'images/IMG-20260423-WA0006.jpg',
+    'images/IMG-20260423-WA0007.jpg',
+    'images/IMG-20260423-WA0008.jpg',
+    'images/IMG-20260423-WA0009.jpg',
+    'images/IMG-20260423-WA0010.jpg',
+    'images/IMG-20260423-WA0011.jpg',
+    'images/IMG-20260423-WA0012.jpg',
+    'images/IMG-20260423-WA0013.jpg',
+    'images/IMG-20260423-WA0014.jpg',
+    'images/IMG-20260423-WA0015.jpg',
+    'images/IMG-20260423-WA0016.jpg',
+    'images/IMG-20260423-WA0017.jpg'
+];
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function initBgSlider() {
+    const slider = document.getElementById('bgSlider');
+    if (!slider) return;
+    
+    const shuffledImages = shuffleArray([...images]);
+    
+    shuffledImages.forEach((img, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'bg-slide' + (index === 0 ? ' active' : '');
+        slide.style.backgroundImage = `url(${img})`;
+        slider.appendChild(slide);
+    });
+    
+    const slides = slider.querySelectorAll('.bg-slide');
+    let currentIndex = 0;
+    
+    setInterval(() => {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add('active');
+    }, 5000);
+}
+
+initBgSlider();
