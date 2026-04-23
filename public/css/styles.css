@@ -106,8 +106,8 @@ h1, h2, h3 {
 }
 
 .btn {
-    padding: 1rem 2.5rem;
-    font-size: 0.9rem;
+    padding: 1.3rem 3rem;
+    font-size: 1.2rem;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -228,14 +228,14 @@ h1, h2, h3 {
 }
 
 .cover-title {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 300;
     letter-spacing: 8px;
     margin-bottom: 0.5rem;
 }
 
 .cover-subtitle {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
     font-weight: 300;
     letter-spacing: 6px;
     text-transform: uppercase;
@@ -243,14 +243,14 @@ h1, h2, h3 {
 }
 
 .cover-date {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     letter-spacing: 4px;
     margin-bottom: 3rem;
     color: var(--red);
 }
 
 .cover-honors {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     line-height: 2;
     margin-bottom: 3rem;
@@ -282,7 +282,7 @@ h1, h2, h3 {
 }
 
 .countdown-number {
-    font-size: clamp(3rem, 6vw, 4rem);
+    font-size: clamp(4rem, 8vw, 5rem);
     font-family: 'Cormorant Garamond', serif;
     font-weight: 600;
     color: var(--red);
@@ -290,7 +290,7 @@ h1, h2, h3 {
 }
 
 .countdown-label {
-    font-size: 0.8rem;
+    font-size: 1rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     opacity: 0.7;
@@ -298,13 +298,13 @@ h1, h2, h3 {
 }
 
 #message .section-title {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.6rem, 6.5vw, 4rem);
     margin-bottom: 2rem;
 }
 
 .message-text {
     max-width: 600px;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-style: italic;
     line-height: 2;
     color: var(--red-light);
@@ -313,33 +313,33 @@ h1, h2, h3 {
 .message-text::before,
 .message-text::after {
     content: '"';
-    font-size: 2rem;
+    font-size: 2.6rem;
     color: var(--red);
     opacity: 0.5;
 }
 
 .quote-icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     margin-bottom: 1rem;
     opacity: 0.6;
 }
 
 #celebration .section-title,
 #ceremony .section-title {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.6rem, 6.5vw, 4rem);
     margin-bottom: 3rem;
 }
 
 .celebration-card {
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     padding: 3rem;
     text-align: center;
 }
 
 .celebration-label {
-    font-size: 0.8rem;
+    font-size: 1rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     opacity: 0.7;
@@ -347,12 +347,12 @@ h1, h2, h3 {
 }
 
 .celebration-value {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
 }
 
 .celebration-value.large {
-    font-size: 2rem;
+    font-size: 2.6rem;
     font-family: 'Cormorant Garamond', serif;
 }
 
@@ -422,31 +422,31 @@ h1, h2, h3 {
 }
 
 .party-card-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
     color: var(--red);
 }
 
 .party-card-text {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     opacity: 0.8;
     line-height: 1.8;
 }
 
 .party-icon {
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     margin-bottom: 1.5rem;
     opacity: 0.8;
 }
 
 #rsvp .section-title {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.6rem, 6.5vw, 4rem);
     margin-bottom: 2rem;
 }
 
 .rsvp-form {
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
 }
 
@@ -457,12 +457,12 @@ h1, h2, h3 {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem;
+    padding: 1.3rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(220, 20, 60, 0.3);
     color: var(--white);
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 1.3rem;
     transition: border-color 0.3s;
 }
 
@@ -480,7 +480,7 @@ h1, h2, h3 {
 .form-success {
     display: none;
     color: var(--red);
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     margin-top: 1rem;
 }
 
@@ -495,13 +495,13 @@ h1, h2, h3 {
 }
 
 .footer-hashtag {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.6rem, 6.5vw, 4rem);
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
 .footer-credit {
-    font-size: 0.8rem;
+    font-size: 1rem;
     opacity: 0.5;
     margin-top: 2rem;
 }
