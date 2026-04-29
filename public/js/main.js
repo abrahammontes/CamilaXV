@@ -1,4 +1,4 @@
-const EVENT_DATE = new Date('2026-07-04T18:00:00');
+const EVENT_DATE = new Date('2026-07-04T17:00:00');
 const API_URL = 'https://api.xvdecamila.mipagina.pro';
 
 function updateCountdown() {
