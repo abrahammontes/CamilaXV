@@ -2,13 +2,44 @@ const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const path = require('path');
+const https = require('https');
+const http = require('http');
 const fs = require('fs');
+const { URL } = require('url');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const EMAIL_USER = process.env.EMAIL_USER || 'camila.torres2024@icloud.com';
+const EMAIL_PASS = process.env.EMAIL_PASS || '';
 
 const dbPath = process.env.DB_PATH || path.join(__dirname, 'database.sqlite');
 let db;
+
+const transporter = nodemailer.createTransporter({
+    service: 'icloud',
+    auth: {
+        user: EMAIL_USER,
+        pass: EMAIL_PASS
+    }
+});
+
+function sendEmail(subject, text) {
+    const mailOptions = {
+        from: EMAIL_USER,
+        to: 'camila.torres2024@icloud.com',
+        subject: subject,
+        text: text
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+        } else {
+            console.log('Email sent:', info.response);
+        }
+    });
+}
 
 function initDb() {
     return new Promise((resolve, reject) => {
@@ -101,6 +132,10 @@ app.post('/api/rsvp', (req, res) => {
                 res.status(500).json({ error: err.message });
                 return;
             }
+            
+            const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
+            sendEmail('Nueva confirmación de asistencia - XV Camila', emailText);
+            
             res.json({ success: true, id: this.lastID });
         }
     );
@@ -126,6 +161,10 @@ app.post('/api/song', (req, res) => {
                 res.status(500).json({ error: err.message });
                 return;
             }
+            
+            const emailText = `Nueva sugerencia de canción:\n\nCanción: ${songName}\nArtista: ${artist}`;
+            sendEmail('Nueva sugerencia de canción - XV Camila', emailText);
+            
             res.json({ success: true, id: this.lastID });
         }
     );
@@ -137,9 +176,40 @@ app.get('/dashboard', (req, res) => {
 
 initDb()
     .then(() => {
-        app.listen(PORT, '0.0.0.0', () => {
-            console.log(`Server running on port ${PORT}`);
+        const sslDir = '/etc/letsencrypt/live/api.xvdecamila.mipagina.pro';
+        const keyPath = path.join(sslDir, 'privkey.pem');
+        const certPath = path.join(sslDir, 'fullchain.pem');
+        
+        // HTTP server (redirect to HTTPS)
+        const httpApp = express();
+        httpApp.use((req, res) => {
+            const url = new URL(req.url, `https://${req.headers.host}`);
+            res.redirect(301, url.toString());
         });
+        
+        http.createServer(httpApp).listen(80, '0.0.0.0', () => {
+            console.log('HTTP server running on port 80 (redirect to HTTPS)');
+        });
+        
+        if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
+            const httpsServer = https.createServer({
+                key: fs.readFileSync(keyPath),
+                cert: fs.readFileSync(certPath)
+            }, app);
+            
+            httpsServer.listen(443, '0.0.0.0', () => {
+                console.log('HTTPS Server running on port 443 with SSL');
+            });
+            
+            // Also listen on 3001 for backwards compatibility
+            app.listen(PORT, '0.0.0.0', () => {
+                console.log(`Server also running on port ${PORT}`);
+            });
+        } else {
+            app.listen(PORT, '0.0.0.0', () => {
+                console.log(`Server running on port ${PORT} (HTTP)`);
+            });
+        }
     })
     .catch(err => {
         console.error('Failed to initialize database:', err);
