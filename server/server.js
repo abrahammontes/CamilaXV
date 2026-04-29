@@ -89,35 +89,6 @@ function initDb() {
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
-app.use('/dashboard', express.static(path.join(__dirname, '../dashboard')));
-
-app.get('/api/rsvps', (req, res) => {
-    if (!db) {
-        res.status(500).json({ error: 'Database not initialized' });
-        return;
-    }
-    db.all(`SELECT * FROM rsvps ORDER BY created_at DESC`, [], (err, rows) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-        res.json(rows);
-    });
-});
-
-app.get('/api/songs', (req, res) => {
-    if (!db) {
-        res.status(500).json({ error: 'Database not initialized' });
-        return;
-    }
-    db.all(`SELECT * FROM songs ORDER BY created_at DESC`, [], (err, rows) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-        res.json(rows);
-    });
-});
 
 app.post('/api/rsvp', (req, res) => {
     if (!db) {
@@ -175,10 +146,6 @@ app.post('/api/song', (req, res) => {
             res.json({ success: true, id: this.lastID });
         }
     );
-});
-
-app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dashboard/index.html'));
 });
 
 initDb()

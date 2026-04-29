@@ -1,0 +1,16 @@
+[Unit]
+Description=CamilaXV API Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/stacks/camilaxv/server
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/opt/stacks/camilaxv/server/logs/api.log
+StandardError=append:/opt/stacks/camilaxv/server/logs/api.error.log
+
+[Install]
+WantedBy=multi-user.target
