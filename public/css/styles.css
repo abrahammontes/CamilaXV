@@ -306,6 +306,10 @@ h1, h2, h3 {
     margin-top: 0.5rem;
 }
 
+#countdown .section-title {
+    margin-bottom: 0.5rem;
+}
+
 #message .section-title {
     font-size: clamp(2.6rem, 6.5vw, 4rem);
     margin-bottom: 2rem;
