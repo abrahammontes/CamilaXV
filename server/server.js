@@ -20,7 +20,7 @@ const CC_EMAIL = process.env.CC_EMAIL || 'xvcamila@mipagina.pro';
 const dbPath = process.env.DB_PATH || path.join(__dirname, 'database.sqlite');
 let db;
 
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
     host: SMTP_HOST,
     port: SMTP_PORT,
     secure: true,
@@ -166,7 +166,6 @@ initDb()
         const keyPath = path.join(sslDir, 'privkey.pem');
         const certPath = path.join(sslDir, 'fullchain.pem');
         
-        // HTTP server (redirect to HTTPS)
         const httpApp = express();
         httpApp.use((req, res) => {
             const url = new URL(req.url, `https://${req.headers.host}`);
@@ -187,7 +186,6 @@ initDb()
                 console.log('HTTPS Server running on port 443 with SSL');
             });
             
-            // Also listen on 3001 for backwards compatibility
             app.listen(PORT, '0.0.0.0', () => {
                 console.log(`Server also running on port ${PORT}`);
             });
