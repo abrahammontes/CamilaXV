@@ -307,6 +307,7 @@ h1, h2, h3 {
 }
 
 #countdown .section-title {
+    margin-top: 2rem;
     margin-bottom: 0;
 }
 
