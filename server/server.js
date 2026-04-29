@@ -10,24 +10,29 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const EMAIL_USER = process.env.EMAIL_USER || 'camila.torres2024@icloud.com';
-const EMAIL_PASS = process.env.EMAIL_PASS || '';
+const SMTP_HOST = process.env.SMTP_HOST || 'mail.mipagina.pro';
+const SMTP_PORT = process.env.SMTP_PORT || 465;
+const SMTP_USER = process.env.SMTP_USER || 'xvdecamila@mipagina.pro';
+const SMTP_PASS = process.env.SMTP_PASS || '.Camila.2026.';
+const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'camila.torres2024@icloud.com';
 
 const dbPath = process.env.DB_PATH || path.join(__dirname, 'database.sqlite');
 let db;
 
 const transporter = nodemailer.createTransporter({
-    service: 'icloud',
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: true,
     auth: {
-        user: EMAIL_USER,
-        pass: EMAIL_PASS
+        user: SMTP_USER,
+        pass: SMTP_PASS
     }
 });
 
 function sendEmail(subject, text) {
     const mailOptions = {
-        from: EMAIL_USER,
-        to: 'camila.torres2024@icloud.com',
+        from: SMTP_USER,
+        to: RECIPIENT_EMAIL,
         subject: subject,
         text: text
     };
