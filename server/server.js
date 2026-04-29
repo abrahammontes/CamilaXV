@@ -39,12 +39,16 @@ function sendEmail(subject, text) {
         text: text
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error sending email:', error);
-        } else {
-            console.log('Email sent:', info.response);
-        }
+    return new Promise((resolve, reject) => {
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                reject(error);
+            } else {
+                console.log('Email sent:', info.response);
+                resolve(info);
+            }
+        });
     });
 }
 
@@ -105,16 +109,20 @@ app.post('/api/rsvp', (req, res) => {
     db.run(
         `INSERT INTO rsvps (name, attending, guests, message) VALUES (?, ?, ?, ?)`,
         [name, attending || 'yes', guests || 0, message || ''],
-        function(err) {
+        async function(err) {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
             
-            const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
-            sendEmail('Nueva confirmación de asistencia - XV Camila', emailText);
-            
-            res.json({ success: true, id: this.lastID });
+            try {
+                const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
+                await sendEmail('Nueva confirmación de asistencia - XV Camila', emailText);
+                res.json({ success: true, id: this.lastID, emailSent: true });
+            } catch (emailErr) {
+                console.error('Email failed:', emailErr);
+                res.json({ success: true, id: this.lastID, emailSent: false });
+            }
         }
     );
 });
@@ -134,16 +142,20 @@ app.post('/api/song', (req, res) => {
     db.run(
         `INSERT INTO songs (song_name, artist) VALUES (?, ?)`,
         [songName, artist],
-        function(err) {
+        async function(err) {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
             
-            const emailText = `Nueva sugerencia de canción:\n\nCanción: ${songName}\nArtista: ${artist}`;
-            sendEmail('Nueva sugerencia de canción - XV Camila', emailText);
-            
-            res.json({ success: true, id: this.lastID });
+            try {
+                const emailText = `Nueva sugerencia de canción:\n\nCanción: ${songName}\nArtista: ${artist}`;
+                await sendEmail('Nueva sugerencia de canción - XV Camila', emailText);
+                res.json({ success: true, id: this.lastID, emailSent: true });
+            } catch (emailErr) {
+                console.error('Email failed:', emailErr);
+                res.json({ success: true, id: this.lastID, emailSent: false });
+            }
         }
     );
 });

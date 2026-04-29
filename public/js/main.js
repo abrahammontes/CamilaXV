@@ -68,10 +68,15 @@ async function handleRSVP(e) {
         });
 
         if (res.ok) {
+            const data = await res.json();
             document.getElementById('rsvp-success').classList.add('show');
             document.getElementById('rsvp-name').value = '';
             document.getElementById('rsvp-message').value = '';
             document.getElementById('rsvp-guests').value = '0';
+
+            if (data.emailSent) {
+                console.log('Correo de confirmación enviado');
+            }
 
             setTimeout(() => {
                 document.getElementById('rsvp-success').classList.remove('show');
@@ -95,10 +100,15 @@ async function handleSongSubmit(e) {
         });
 
         if (res.ok) {
+            const data = await res.json();
             alert(`¡Gracias por sugerir "${songName}" de ${artist}!`);
             document.getElementById('song-name').value = '';
             document.getElementById('song-artist').value = '';
             closeModal('song');
+
+            if (data.emailSent) {
+                console.log('Correo de sugerencia enviado');
+            }
         }
     } catch (err) {
         console.error('Error submitting song:', err);
