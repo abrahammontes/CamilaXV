@@ -116,7 +116,7 @@
     </div>
 
     <div id="gallery" class="section">
-        <div class="gallery-header fade-in">
+        <div class="gallery-header fade-in" style="text-align: center;">
             <h2 class="section-title">Galería</h2>
             <p style="opacity: 0.7; margin-bottom: 1rem;">Un recorrido de estos 15 años</p>
             <div class="decorative-line"></div>
@@ -183,7 +183,7 @@
             <p style="opacity: 0.7;">Hagamos juntos una fiesta épica</p>
         </div>
         <div class="party-grid fade-in">
-            <div class="party-card red-border">
+            <div class="party-card red-border" style="text-align: center;">
                 <svg class="party-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M9 18V5l12-2v13"/>
                     <circle cx="6" cy="18" r="3"/>
@@ -193,6 +193,17 @@
                 <p class="party-card-text">¿Cuál es la canción que no debe faltar en la fiesta?</p>
                 <button class="btn btn-red" style="margin-top: 1.5rem;" onclick="openModal('song')">Sugerir Canción</button>
             </div>
+            <div class="party-card red-border" style="text-align: center;">
+                <svg class="party-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L2 7l10 5 10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+                <h3 class="party-card-title">Dress Code</h3>
+                <p class="party-card-text">Una orientación para tu vestuario</p>
+                <button class="btn btn-red" style="margin-top: 1.5rem;" onclick="openModal('dresscode')">Ver más</button>
+            </div>
+        </div>
             <div class="party-card red-border">
                 <svg class="party-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -207,10 +218,10 @@
     </div>
 
     <div id="rsvp" class="section" style="background: var(--dark);">
-        <div class="fade-in">
+        <div class="fade-in" style="text-align: center;">
             <h2 class="section-title">Confirmar Asistencia</h2>
             <p style="opacity: 0.7; margin-bottom: 2rem;">¿Vas a asistir? ¡Cuéntanos!</p>
-            <form class="rsvp-form" onsubmit="handleRSVP(event)">
+            <form class="rsvp-form" onsubmit="handleRSVP(event)" style="margin: 0 auto;">
                 <div class="form-group">
                     <input type="text" id="rsvp-name" placeholder="Tu nombre" required>
                 </div>

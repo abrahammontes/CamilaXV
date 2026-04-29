@@ -553,6 +553,8 @@ h1, h2, h3 {
 .rsvp-form {
     max-width: 500px;
     width: 100%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .form-group {
@@ -597,6 +599,7 @@ h1, h2, h3 {
     background: rgba(17, 17, 17, 0.7);
     min-height: auto;
     padding: 3rem 2rem;
+    text-align: center;
 }
 
 .footer-hashtag {
