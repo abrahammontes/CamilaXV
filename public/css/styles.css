@@ -323,6 +323,8 @@ h1, h2, h3 {
     line-height: 2;
     color: var(--white);
     opacity: 0.95;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .message-text::before,
@@ -340,10 +342,12 @@ h1, h2, h3 {
     opacity: 0.6;
 }
 
-#celebration .section-title,
-#ceremony .section-title {
+#message .section-title,
+#ceremony .section-title,
+#celebration .section-title {
     font-size: clamp(2.6rem, 6.5vw, 4rem);
     margin-bottom: 3rem;
+    text-align: center;
 }
 
 .celebration-card {
@@ -359,11 +363,13 @@ h1, h2, h3 {
     text-transform: uppercase;
     opacity: 0.85;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .celebration-value {
     font-size: 2.4rem;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .celebration-value.large {
