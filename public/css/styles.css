@@ -282,7 +282,7 @@ h1, h2, h3 {
     gap: 2rem;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 .countdown-item {
