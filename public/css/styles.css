@@ -7,12 +7,12 @@
 }
 
 :root {
-    --red: #DC143C;
-    --red-bright: #FF3333;
+    --red: #FF1A3A;
+    --red-bright: #FF5555;
     --black: #0a0a0a;
     --dark: #111111;
     --white: #ffffff;
-    --red-light: #ffcccc;
+    --red-light: #ff9999;
 }
 
 html {
@@ -24,6 +24,7 @@ body {
     background-color: var(--black);
     color: var(--white);
     overflow-x: hidden;
+    font-size: 17px;
 }
 
 h1, h2, h3 {
@@ -250,11 +251,11 @@ h1, h2, h3 {
 }
 
 .cover-honors {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     letter-spacing: 2px;
     line-height: 2;
     margin-bottom: 3rem;
-    opacity: 0.9;
+    opacity: 1;
 }
 
 .ornament {
@@ -290,10 +291,10 @@ h1, h2, h3 {
 }
 
 .countdown-label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.7;
+    opacity: 0.9;
     margin-top: 0.5rem;
 }
 
@@ -304,10 +305,11 @@ h1, h2, h3 {
 
 .message-text {
     max-width: 600px;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-style: italic;
     line-height: 2;
-    color: var(--red-light);
+    color: var(--white);
+    opacity: 0.95;
 }
 
 .message-text::before,
@@ -339,20 +341,20 @@ h1, h2, h3 {
 }
 
 .celebration-label {
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.7;
+    opacity: 0.85;
     margin-bottom: 1rem;
 }
 
 .celebration-value {
-    font-size: 2rem;
+    font-size: 2.4rem;
     margin-bottom: 2rem;
 }
 
 .celebration-value.large {
-    font-size: 2.6rem;
+    font-size: 3.2rem;
     font-family: 'Cormorant Garamond', serif;
 }
 
@@ -512,8 +514,8 @@ h1, h2, h3 {
 }
 
 .party-card-text {
-    font-size: 1.2rem;
-    opacity: 0.8;
+    font-size: 1.4rem;
+    opacity: 0.95;
     line-height: 1.8;
 }
 
@@ -595,6 +597,10 @@ h1, h2, h3 {
 }
 
 @media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+    
     .countdown-container {
         gap: 1rem;
     }
@@ -617,6 +623,14 @@ h1, h2, h3 {
         grid-column: auto !important;
         grid-row: auto !important;
         aspect-ratio: 1;
+    }
+    
+    .celebration-value.large {
+        font-size: 2.4rem;
+    }
+    
+    .celebration-label {
+        font-size: 1rem;
     }
 }
 
