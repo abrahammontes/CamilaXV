@@ -119,11 +119,11 @@ app.post('/api/rsvp', (req, res) => {
             try {
                 const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
                 await sendEmail('Nueva confirmación de asistencia - XV Camila', emailText);
-                res.json({ success: true, id: this.lastID, emailSent: true });
             } catch (emailErr) {
-                console.error('Email failed:', emailErr);
-                res.json({ success: true, id: this.lastID, emailSent: false });
+                console.error('Email failed (not critical):', emailErr.message);
             }
+            
+            res.json({ success: true, id: this.lastID });
         }
     );
 });
@@ -152,11 +152,11 @@ app.post('/api/song', (req, res) => {
             try {
                 const emailText = `Nueva sugerencia de canción:\n\nCanción: ${songName}\nArtista: ${artist}`;
                 await sendEmail('Nueva sugerencia de canción - XV Camila', emailText);
-                res.json({ success: true, id: this.lastID, emailSent: true });
             } catch (emailErr) {
-                console.error('Email failed:', emailErr);
-                res.json({ success: true, id: this.lastID, emailSent: false });
+                console.error('Email failed (not critical):', emailErr.message);
             }
+            
+            res.json({ success: true, id: this.lastID });
         }
     );
 });
