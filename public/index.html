@@ -11,6 +11,10 @@
 <body>
     <div class="bg-slider" id="bgSlider"></div>
     <div class="bg-overlay"></div>
+    <div id="scroll-background-container">
+        <div class="scroll-background-layer" id="scroll-bg-1"></div>
+        <div class="scroll-background-layer" id="scroll-bg-2"></div>
+    </div>
     <div id="cover" class="section">
         <div class="cover-content fade-in">
             <p class="cover-subtitle red-text">Mis XV Años</p>
@@ -231,9 +235,6 @@
             <h2 class="footer-hashtag red-text">#15Camila</h2>
             <p style="opacity: 0.7;">Una gran fiesta junto a ti</p>
             <div class="ornament"></div>
-            <a href="https://xvdecamila.mipagina.pro/dashboard" target="_blank" class="btn btn-red" style="margin-top: 1rem;">
-                Dashboard
-            </a>
             <p class="footer-credit">
                 <span>Camila Violeta</span> - Mis XV Años
             </p>
@@ -296,8 +297,24 @@
         </div>
     </div>
 
+    <!-- Gift Registry Banner -->
+    <div id="gift-registry" class="section" style="background: rgba(17, 17, 17, 0.7);">
+        <div class="fade-in" style="text-align: center;">
+            <h2 class="section-title">Mesa de Regalos</h2>
+            <div class="ornament"></div>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 1.5rem;">
+                No se te olvide visitar mi mesa de regalos en Liverpool
+            </p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 1rem; margin-bottom: 1.5rem;">
+                Número de evento: <strong>51998724</strong>
+            </p>
+            <a href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51998724" target="_blank" style="display: inline-block; text-decoration: none; margin-top: 1rem;">
+                <img src="images/mesaderegalos.png" alt="Mesa de Regalos Liverpool" style="max-width: 400px; width: 100%; border-radius: 8px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+        </div>
+    </div>
+
     <!-- Video Modal -->
-    <div id="video-modal" class="modal" onclick="closeVideoModal()">
         <span class="modal-close" onclick="closeVideoModal()">&times;</span>
         <video id="gallery-video" src="images/xvcamila-photosv2_(1).mp4" controls style="max-width: 90%; max-height: 90%;"></video>
     </div>

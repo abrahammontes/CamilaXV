@@ -1,6 +1,88 @@
 const EVENT_DATE = new Date('2026-07-04T17:00:00');
 const API_URL = '';
 
+const xvcamilaImages = [
+    'images/xvcamila-photosv2_(1).jpeg',
+    'images/xvcamila-photosv2_(2).jpeg',
+    'images/xvcamila-photosv2_(3).jpeg',
+    'images/xvcamila-photosv2_(4).jpeg',
+    'images/xvcamila-photosv2_(5).jpeg',
+    'images/xvcamila-photosv2_(6).jpeg',
+    'images/xvcamila-photosv2_(7).jpeg',
+    'images/xvcamila-photosv2_(8).jpeg',
+    'images/xvcamila-photosv2_(9).jpeg',
+    'images/xvcamila-photosv2_(10).jpeg'
+];
+
+// Background scroll effect with fade-in/fade-out
+function initBackgroundScroll() {
+    const container = document.getElementById('scroll-background-container');
+    if (!container) return;
+
+    const bg1 = document.getElementById('scroll-bg-1');
+    const bg2 = document.getElementById('scroll-bg-2');
+    if (!bg1 || !bg2) return;
+
+    // Preload images
+    const preloadedImages = xvcamilaImages.map(src => {
+        const img = new Image();
+        img.src = src;
+        return img;
+    });
+
+    let currentIndex = 0;
+    let nextIndex = 1;
+    let isTransitioning = false;
+
+    // Set initial backgrounds
+    bg1.style.backgroundImage = `url('${xvcamilaImages[0]}')`;
+    bg2.style.backgroundImage = `url('${xvcamilaImages[1]}')`;
+    bg1.classList.add('active');
+
+    function updateBackgrounds() {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Calculate progress (0 to 1)
+        const progress = scrollPosition / (documentHeight - windowHeight);
+        
+        // Map progress to image index (0 to images.length-1)
+        const targetIndex = Math.floor(progress * (xvcamilaImages.length - 1));
+        
+        // Only update if target index changed and we're not already transitioning
+        if (targetIndex !== currentIndex && !isTransitioning) {
+            isTransitioning = true;
+            
+            // Set the next background
+            const nextBg = currentIndex === 0 ? bg2 : bg1;
+            nextBg.style.backgroundImage = `url('${xvcamilaImages[targetIndex]}')`;
+            nextBg.classList.add('active');
+            
+            // After transition duration, switch active class
+            setTimeout(() => {
+                const currentBg = currentIndex === 0 ? bg1 : bg2;
+                currentBg.classList.remove('active');
+                currentIndex = targetIndex;
+                nextIndex = (targetIndex + 1) % xvcamilaImages.length;
+                
+                // Set the next upcoming background
+                const upcomingBg = currentIndex === 0 ? bg2 : bg1;
+                upcomingBg.style.backgroundImage = `url('${xvcamilaImages[nextIndex]}')`;
+                
+                isTransitioning = false;
+            }, 1500); // Match CSS transition duration
+        }
+    }
+    
+    // Initial call
+    updateBackgrounds();
+    
+    // Update on scroll and resize
+    window.addEventListener('scroll', updateBackgrounds);
+    window.addEventListener('resize', updateBackgrounds);
+}
+
 function updateCountdown() {
     const now = new Date();
     const diff = EVENT_DATE - now;
@@ -206,3 +288,4 @@ function initBgSlider() {
 }
 
 initBgSlider();
+initBackgroundScroll();
