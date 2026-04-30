@@ -11,7 +11,7 @@ const nodemailer = require('nodemailer');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const SMTP_HOST = process.env.SMTP_HOST || '51.77.71.235';
-const SMTP_PORT = process.env.SMTP_PORT || 587;
+const SMTP_PORT = process.env.SMTP_PORT || 465;
 const SMTP_USER = process.env.SMTP_USER || 'xvdecamila@mipagina.pro';
 const SMTP_PASS = process.env.SMTP_PASS || '.Camila.2026.';
 const CC_EMAIL = process.env.CC_EMAIL || 'xvcamila@mipagina.pro';
@@ -122,7 +122,8 @@ app.post('/api/rsvp', (req, res) => {
                 res.json({ success: true, id: this.lastID });
             } catch (emailErr) {
                 console.error('Email failed:', emailErr.message);
-                res.status(500).json({ error: 'Error enviando correo de confirmación' });
+                // Temporal: permitir confirmación aunque falle el correo
+                res.json({ success: true, id: this.lastID, emailWarning: 'Correo no enviado, pero asistencia confirmada' });
             }
         }
     );
