@@ -107,26 +107,25 @@ app.post('/api/rsvp', (req, res) => {
         return;
     }
 
-    db.run(
-        `INSERT INTO rsvps (name, attending, guests, message) VALUES (?, ?, ?, ?)`,
-        [name, attending || 'yes', guests || 0, message || ''],
-        async function(err) {
-            if (err) {
-                res.status(500).json({ error: err.message });
-                return;
+        db.run(
+            `INSERT INTO rsvps (name, attending, guests, message) VALUES (?, ?, ?, ?)`,
+            [name, attending || 'yes', guests || 0, message || ''],
+            async function(err) {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                    return;
+                }
+                
+                try {
+                    const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
+                    await sendEmail('Nueva confirmación de asistencia - XV Camila', emailText);
+                    res.json({ success: true, id: this.lastID });
+                } catch (emailErr) {
+                    console.error('Email failed:', emailErr.message);
+                    res.status(500).json({ error: 'Error enviando correo de confirmación' });
+                }
             }
-            
-            try {
-                const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
-                await sendEmail('Nueva confirmación de asistencia - XV Camila', emailText);
-                res.json({ success: true, id: this.lastID });
-            } catch (emailErr) {
-                console.error('Email failed:', emailErr.message);
-                // Temporal: permitir confirmación aunque falle el correo
-                res.json({ success: true, id: this.lastID, emailWarning: 'Correo no enviado, pero asistencia confirmada' });
-            }
-        }
-    );
+        );
 });
 
 app.post('/api/song', (req, res) => {
@@ -164,38 +163,9 @@ app.post('/api/song', (req, res) => {
 
 initDb()
     .then(() => {
-        const sslDir = '/etc/letsencrypt/live/api.xvdecamila.mipagina.pro';
-        const keyPath = path.join(sslDir, 'privkey.pem');
-        const certPath = path.join(sslDir, 'fullchain.pem');
-        
-        const httpApp = express();
-        httpApp.use((req, res) => {
-            const url = new URL(req.url, `https://${req.headers.host}`);
-            res.redirect(301, url.toString());
+        app.listen(PORT, '0.0.0.0', () => {
+            console.log(`Server running on port ${PORT}`);
         });
-        
-        http.createServer(httpApp).listen(80, '0.0.0.0', () => {
-            console.log('HTTP server running on port 80 (redirect to HTTPS)');
-        });
-        
-        if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
-            const httpsServer = https.createServer({
-                key: fs.readFileSync(keyPath),
-                cert: fs.readFileSync(certPath)
-            }, app);
-            
-            httpsServer.listen(443, '0.0.0.0', () => {
-                console.log('HTTPS Server running on port 443 with SSL');
-            });
-            
-            app.listen(PORT, '0.0.0.0', () => {
-                console.log(`Server also running on port ${PORT}`);
-            });
-        } else {
-            app.listen(PORT, '0.0.0.0', () => {
-                console.log(`Server running on port ${PORT} (HTTP)`);
-            });
-        }
     })
     .catch(err => {
         console.error('Failed to initialize database:', err);
