@@ -14,7 +14,6 @@ const SMTP_HOST = process.env.SMTP_HOST || 'mail.mipagina.pro';
 const SMTP_PORT = process.env.SMTP_PORT || 465;
 const SMTP_USER = process.env.SMTP_USER || 'xvdecamila@mipagina.pro';
 const SMTP_PASS = process.env.SMTP_PASS || '.Camila.2026.';
-const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'camila.torres2024@icloud.com';
 const CC_EMAIL = process.env.CC_EMAIL || 'xvcamila@mipagina.pro';
 
 const dbPath = process.env.DB_PATH || path.join(__dirname, 'database.sqlite');
@@ -36,8 +35,7 @@ const transporter = nodemailer.createTransport({
 function sendEmail(subject, text) {
     const mailOptions = {
         from: SMTP_USER,
-        to: RECIPIENT_EMAIL,
-        cc: CC_EMAIL,
+        to: CC_EMAIL,
         subject: subject,
         text: text
     };
