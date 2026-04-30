@@ -9,7 +9,7 @@ const { URL } = require('url');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 9300;
 const SMTP_HOST = process.env.SMTP_HOST || '51.77.71.235';
 const SMTP_PORT = process.env.SMTP_PORT || 465;
 const SMTP_USER = process.env.SMTP_USER || 'xvdecamila@mipagina.pro';
@@ -110,20 +110,21 @@ app.post('/api/rsvp', (req, res) => {
         db.run(
             `INSERT INTO rsvps (name, attending, guests, message) VALUES (?, ?, ?, ?)`,
             [name, attending || 'yes', guests || 0, message || ''],
-            async function(err) {
+            function(err) {
                 if (err) {
                     res.status(500).json({ error: err.message });
                     return;
                 }
                 
-                try {
-                    const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
-                    await sendEmail('Nueva confirmación de asistencia - XV Camila', emailText);
-                    res.json({ success: true, id: this.lastID });
-                } catch (emailErr) {
-                    console.error('Email failed:', emailErr.message);
-                    res.status(500).json({ error: 'Error enviando correo de confirmación' });
-                }
+                const id = this.lastID;
+                const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
+                
+                // Enviar correo asíncrono sin esperar
+                sendEmail('Nueva confirmación de asistencia - XV Camila', emailText)
+                    .then(() => console.log('Email sent successfully'))
+                    .catch(err => console.error('Email failed:', err.message));
+                
+                res.json({ success: true, id });
             }
         );
 });
