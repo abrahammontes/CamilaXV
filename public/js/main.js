@@ -119,6 +119,22 @@ function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
+function openVideoModal() {
+    const videoModal = document.getElementById('video-modal');
+    const video = document.getElementById('gallery-video');
+    videoModal.classList.add('active');
+    video.play();
+    document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal() {
+    const videoModal = document.getElementById('video-modal');
+    const video = document.getElementById('gallery-video');
+    videoModal.classList.remove('active');
+    video.pause();
+    document.body.style.overflow = '';
+}
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -146,20 +162,16 @@ document.addEventListener('keydown', (e) => {
 });
 
 const images = [
-    'images/IMG-20260423-WA0004.jpg',
-    'images/IMG-20260423-WA0005.jpg',
-    'images/IMG-20260423-WA0006.jpg',
-    'images/IMG-20260423-WA0007.jpg',
-    'images/IMG-20260423-WA0008.jpg',
-    'images/IMG-20260423-WA0009.jpg',
-    'images/IMG-20260423-WA0010.jpg',
-    'images/IMG-20260423-WA0011.jpg',
-    'images/IMG-20260423-WA0012.jpg',
-    'images/IMG-20260423-WA0013.jpg',
-    'images/IMG-20260423-WA0014.jpg',
-    'images/IMG-20260423-WA0015.jpg',
-    'images/IMG-20260423-WA0016.jpg',
-    'images/IMG-20260423-WA0017.jpg'
+    'images/xvcamila-photosv2_(1).jpeg',
+    'images/xvcamila-photosv2_(2).jpeg',
+    'images/xvcamila-photosv2_(3).jpeg',
+    'images/xvcamila-photosv2_(4).jpeg',
+    'images/xvcamila-photosv2_(5).jpeg',
+    'images/xvcamila-photosv2_(6).jpeg',
+    'images/xvcamila-photosv2_(7).jpeg',
+    'images/xvcamila-photosv2_(8).jpeg',
+    'images/xvcamila-photosv2_(9).jpeg',
+    'images/xvcamila-photosv2_(10).jpeg'
 ];
 
 function shuffleArray(array) {
