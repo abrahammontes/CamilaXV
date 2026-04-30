@@ -69,14 +69,19 @@ async function handleRSVP(e) {
 
         if (res.ok) {
             const data = await res.json();
-            document.getElementById('rsvp-success').classList.add('show');
-            document.getElementById('rsvp-name').value = '';
-            document.getElementById('rsvp-message').value = '';
-            document.getElementById('rsvp-guests').value = '0';
+            
+            if (data.emailSent) {
+                document.getElementById('rsvp-success').classList.add('show');
+                document.getElementById('rsvp-name').value = '';
+                document.getElementById('rsvp-message').value = '';
+                document.getElementById('rsvp-guests').value = '0';
 
-            setTimeout(() => {
-                document.getElementById('rsvp-success').classList.remove('show');
-            }, 3000);
+                setTimeout(() => {
+                    document.getElementById('rsvp-success').classList.remove('show');
+                }, 3000);
+            } else {
+                alert('Datos guardados, pero el correo no pudo ser enviado. Intenta de nuevo más tarde.');
+            }
         }
     } catch (err) {
         console.error('Error submitting RSVP:', err);
@@ -96,10 +101,16 @@ async function handleSongSubmit(e) {
         });
 
         if (res.ok) {
-            alert(`¡Gracias por sugerir "${songName}" de ${artist}!`);
-            document.getElementById('song-name').value = '';
-            document.getElementById('song-artist').value = '';
-            closeModal('song');
+            const data = await res.json();
+            
+            if (data.emailSent) {
+                alert(`¡Gracias por sugerir "${songName}" de ${artist}!`);
+                document.getElementById('song-name').value = '';
+                document.getElementById('song-artist').value = '';
+                closeModal('song');
+            } else {
+                alert('Canción guardada, pero el correo no pudo ser enviado. Intenta de nuevo más tarde.');
+            }
         }
     } catch (err) {
         console.error('Error submitting song:', err);
