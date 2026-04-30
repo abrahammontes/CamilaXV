@@ -10,7 +10,7 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const SMTP_HOST = process.env.SMTP_HOST || 'mail.mipagina.pro';
+const SMTP_HOST = process.env.SMTP_HOST || '51.77.71.235';
 const SMTP_PORT = process.env.SMTP_PORT || 465;
 const SMTP_USER = process.env.SMTP_USER || 'xvdecamila@mipagina.pro';
 const SMTP_PASS = process.env.SMTP_PASS || '.Camila.2026.';
