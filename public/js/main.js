@@ -68,23 +68,21 @@ async function handleRSVP(e) {
         });
 
         if (res.ok) {
-            const data = await res.json();
-            
-            if (data.emailSent) {
-                document.getElementById('rsvp-success').classList.add('show');
-                document.getElementById('rsvp-name').value = '';
-                document.getElementById('rsvp-message').value = '';
-                document.getElementById('rsvp-guests').value = '0';
+            document.getElementById('rsvp-success').classList.add('show');
+            document.getElementById('rsvp-name').value = '';
+            document.getElementById('rsvp-message').value = '';
+            document.getElementById('rsvp-guests').value = '0';
 
-                setTimeout(() => {
-                    document.getElementById('rsvp-success').classList.remove('show');
-                }, 3000);
-            } else {
-                alert('Datos guardados, pero el correo no pudo ser enviado. Intenta de nuevo más tarde.');
-            }
+            setTimeout(() => {
+                document.getElementById('rsvp-success').classList.remove('show');
+            }, 3000);
+        } else {
+            const data = await res.json();
+            alert(data.error || 'Error al enviar. Intenta de nuevo.');
         }
     } catch (err) {
         console.error('Error submitting RSVP:', err);
+        alert('Error de conexión. Intenta de nuevo.');
     }
 }
 

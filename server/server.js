@@ -119,10 +119,10 @@ app.post('/api/rsvp', (req, res) => {
             try {
                 const emailText = `Nueva confirmación de asistencia:\n\nNombre: ${name}\nAsistencia: ${attending || 'yes'}\nInvitados: ${guests || 0}\nMensaje: ${message || 'Ninguno'}`;
                 await sendEmail('Nueva confirmación de asistencia - XV Camila', emailText);
-                res.json({ success: true, id: this.lastID, emailSent: true });
+                res.json({ success: true, id: this.lastID });
             } catch (emailErr) {
                 console.error('Email failed:', emailErr.message);
-                res.json({ success: true, id: this.lastID, emailSent: false });
+                res.status(500).json({ error: 'Error enviando correo de confirmación' });
             }
         }
     );
